@@ -15,6 +15,7 @@ class NgTiddleAuth extends Service
   signOut: ->
     @$http.delete("#{@tap.getApiRoot()}/#{@tap.getApiResourcePath()}/sign_out")
     .then =>
+      @sign_in_params = {}
       @ngTiddleSessionService.clear()
       @$timeout((=> @tap.onUnauthorized()), 0)
 
